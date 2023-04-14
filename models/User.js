@@ -36,14 +36,12 @@ User.init({
         sequelize,
         modelName: 'User',
         tableName: 'users',
-        timestamps: true, // disable timestamps
+        timestamps: true,
         createdAt: 'created_at',
         updatedAt: false,
     }
 );
 
-// User.hasMany(Community, { foreignKey: 'owner' });
-// Community.belongsTo(User);
 User.hasMany(Community, {
     foreignKey: 'owner',
     as: 'communities',

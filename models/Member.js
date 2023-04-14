@@ -2,7 +2,6 @@ const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../db.config');
 const Community = require('./Community');
 const User = require('./User');
-const R0le = require('./Role');
 const Role = require('./Role');
 
 class Member extends Model { }

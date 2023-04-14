@@ -1,8 +1,8 @@
 const { Snowflake } = require('@theinternetfolks/snowflake');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const secret_key = 'theInternetFolks';
+const jwt = require('jsonwebtoken');
 
 exports.signUp = async (req, res) => {
     const { name, email, password } = req.body;
@@ -102,47 +102,5 @@ exports.getMe = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({ status: false, message: 'Invalid token' });
-    }
-}
-
-// Get all users
-exports.getUsers = async (req, res) => {
-    try {
-        const users = await User.findAll();
-        res.json(users);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-exports.updateUser = async (req, res) => {
-    try {
-        const user = await User.findByPk(req.params.id);
-        const { name, email, password } = req.body;
-
-        if (!user) {
-            return res.status(400).send('User not found')
-        }
-
-        await user.update({ name, email, password });
-
-        res.json(user);
-    } catch (error) {
-        res.status(500).send('Error updating user')
-    }
-};
-
-exports.deleteUser = async (req, res) => {
-    try {
-        const user = await User.findByPk(req.params.id);
-
-        if (user) {
-            await user.destroy();
-            res.json({ message: 'User deleted successfully' });
-        } else {
-            res.status(400).json({ message: 'User not found' });
-        }
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error' })
     }
 };

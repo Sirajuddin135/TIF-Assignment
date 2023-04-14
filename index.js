@@ -3,13 +3,13 @@ const app = express();
 const cors = require('cors');
 const body_parser = require('body-parser');
 const sequelize = require('./db.config');
-const { Snowflake } = require('@theinternetfolks/snowflake');
 const PORT = process.env.PORT || 4000;
+const { Snowflake } = require('@theinternetfolks/snowflake');
+const Role = require('./models/Role');
 const usersRouter = require('./routes/users.routes');
 const rolesRouter = require('./routes/roles.routes');
 const communitiesRouter = require('./routes/communities.routes');
-const membersRouter = require('./routes/members.routes')
-const Role = require('./models/Role');
+const membersRouter = require('./routes/members.routes');
 
 app.use(express.json());
 app.use(cors());

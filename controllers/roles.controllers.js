@@ -1,4 +1,4 @@
-const { snowflake, Snowflake } = require('@theinternetfolks/snowflake');
+const { Snowflake } = require('@theinternetfolks/snowflake');
 const Role = require('../models/Role');
 
 exports.create = async (req, res) => {

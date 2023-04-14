@@ -1,10 +1,10 @@
 const { Snowflake } = require('@theinternetfolks/snowflake');
 const Community = require('../models/Community');
-const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Role = require('../models/Role');
 const Member = require('../models/Member');
 const secret_key = 'theInternetFolks';
+const jwt = require('jsonwebtoken');
 
 exports.addMember = async (req, res) => {
     try {
