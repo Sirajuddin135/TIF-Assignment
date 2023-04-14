@@ -1,5 +1,6 @@
-const { DataTypes, Model, Sequelize } = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../db.config');
+const Community = require('./Community');
 
 class User extends Model { }
 
@@ -12,7 +13,7 @@ User.init({
         type: DataTypes.STRING(64),
         defaultValue: null,
         validate: {
-            len: [2, 64],
+            len: [2, 64]
         }
     },
     email: {
@@ -40,6 +41,18 @@ User.init({
         updatedAt: false,
     }
 );
+
+// User.hasMany(Community, { foreignKey: 'owner' });
+// Community.belongsTo(User);
+User.hasMany(Community, {
+    foreignKey: 'owner',
+    as: 'communities',
+});
+
+Community.belongsTo(User, {
+    foreignKey: 'owner',
+    as: 'owner_user',
+});
 
 
 module.exports = User;
